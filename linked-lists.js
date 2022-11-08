@@ -19,6 +19,20 @@ const LinkedList = () => {
         return list;
     };
 
-    return {getList, append};
+    const prepend = (value, headNode = list.head) => {
+        if (headNode.value === null && headNode.nextNode === null) {
+            headNode.nextNode = Node(value);
+        } else if (headNode.value === null && headNode.nextNode !== null) {
+            headNode.nextNode = Node(value, headNode.nextNode);
+        } 
+        return list;
+    }
+
+    return {getList, append, prepend};
 }
-// const newList = LinkedList();
+const newList = LinkedList();
+
+console.log(newList.prepend("Value0"));
+console.log(newList.prepend("Value1"));
+console.log(newList.prepend("Value2"));
+console.log(newList.prepend("Value3"));

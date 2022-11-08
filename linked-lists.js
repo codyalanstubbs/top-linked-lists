@@ -41,8 +41,22 @@ const LinkedList = () => {
         return list.head;
     }
 
-    return {getList, append, prepend, size, head};
+    const tail = (currentNode = list.head) => {
+        let lastNode;
+        if (currentNode.nextNode === null) {
+            return currentNode;
+        } else {
+            lastNode = tail(currentNode.nextNode);
+        }
+        return lastNode;
+    }
+
+    return {getList, append, prepend, size, head, tail};
 }
 const newList = LinkedList();
-console.log(newList.getList())
-console.log(newList.head())
+// console.log(newList.getList())
+for (let i = 0; i < 20; i++) {
+    newList.append(`V${i}`);
+}
+// console.log(newList.getList())
+console.log("TAIL:", newList.tail())

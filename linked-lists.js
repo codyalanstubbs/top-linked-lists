@@ -62,13 +62,21 @@ const LinkedList = () => {
         return selectedNode;
     }
 
-    return {getList, append, prepend, size, head, tail, at};
+    const pop = (currentNode = list.head) => {
+        if (currentNode.nextNode.nextNode === null) {
+            return currentNode.nextNode = null;
+        } else {
+            pop(currentNode.nextNode);
+        }
+        return list;
+    }
+
+    return {getList, append, prepend, size, head, tail, at, pop};
 }
 const newList = LinkedList();
-// console.log(newList.getList())
-for (let i = 0; i < 20; i++) {
-    newList.append(`V${i}`);
-}
-// console.log(newList.getList())
-console.log("AT: ", newList.at(10))
-// newList.at(10)
+// for (let i = 0; i < 20; i++) {
+//     newList.append(`V${i}`);
+// }
+// console.log("tail before: ", newList.tail())
+// console.log("POP: ", newList.pop())
+// console.log("tail after: ", newList.tail())

@@ -71,12 +71,27 @@ const LinkedList = () => {
         return list;
     }
 
-    return {getList, append, prepend, size, head, tail, at, pop};
+    const contains = (value, currentNode = list.head) => {
+        let result;
+        if (currentNode.value === value) {
+            return true;
+        } else if (currentNode.value !== value && currentNode.nextNode === null) {
+            return false;
+        } else {
+            result = contains(value, currentNode.nextNode);
+        }
+        return result;
+    }
+
+    return {
+        getList, append, prepend, size, 
+        head, tail, at, pop, contains
+    };
 }
 const newList = LinkedList();
-// for (let i = 0; i < 20; i++) {
-//     newList.append(`V${i}`);
-// }
-// console.log("tail before: ", newList.tail())
-// console.log("POP: ", newList.pop())
-// console.log("tail after: ", newList.tail())
+for (let i = 0; i < 10; i++) {
+    newList.append(`V${i}`);
+}
+for (let i = 0; i < 20; i++) {
+    console.log(`contains V${i}: `, newList.contains(`V${i}`))
+}

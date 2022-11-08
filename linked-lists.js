@@ -95,16 +95,25 @@ const LinkedList = () => {
         return counter;
     }
 
+    const toString = (currentNode = list.head) => {
+        let finalString;
+        if (currentNode.nextNode === null) {
+            return `null`;
+        } else {
+            finalString = `(${currentNode.value}) --> ` + toString(currentNode.nextNode);
+        }
+        return finalString;
+    }
+
     return {
         getList, append, prepend, size, 
         head, tail, at, pop, contains,
-        find
+        find, toString
     };
 }
+
 const newList = LinkedList();
 // for (let i = 0; i < 10; i++) {
 //     newList.append(`V${i}`);
 // }
-// for (let i = 0; i < 20; i++) {
-//     console.log(`find V${i}: `, newList.find(`V${i}`))
-// }
+// console.log(`toString: `, newList.toString());

@@ -28,11 +28,24 @@ const LinkedList = () => {
         return list;
     }
 
-    return {getList, append, prepend};
+    const size = (startNode = list.head) => {
+        let counter = 0;
+        counter++;
+        if (startNode.nextNode !== null) {
+            counter += size(startNode.nextNode);   
+        }
+        return counter;
+    }
+
+    return {getList, append, prepend, size};
 }
 const newList = LinkedList();
-
+console.log(newList.size())
 console.log(newList.prepend("Value0"));
+console.log(newList.size())
 console.log(newList.prepend("Value1"));
+console.log(newList.size())
 console.log(newList.prepend("Value2"));
+console.log(newList.size())
 console.log(newList.prepend("Value3"));
+console.log(newList.size())

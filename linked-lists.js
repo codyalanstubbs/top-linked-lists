@@ -51,7 +51,18 @@ const LinkedList = () => {
         return lastNode;
     }
 
-    return {getList, append, prepend, size, head, tail};
+    const at = (index, currentNode = list.head, counter = 0) => {
+        let selectedNode;
+        if (index === counter) {
+            return currentNode;
+        } else {
+            counter++;
+            selectedNode = at(index, currentNode.nextNode, counter);
+        }
+        return selectedNode;
+    }
+
+    return {getList, append, prepend, size, head, tail, at};
 }
 const newList = LinkedList();
 // console.log(newList.getList())
@@ -59,4 +70,5 @@ for (let i = 0; i < 20; i++) {
     newList.append(`V${i}`);
 }
 // console.log(newList.getList())
-console.log("TAIL:", newList.tail())
+console.log("AT: ", newList.at(10))
+// newList.at(10)

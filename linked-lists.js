@@ -83,15 +83,28 @@ const LinkedList = () => {
         return result;
     }
 
+    const find = (value, currentNode = list.head, counter = 0) => {
+        if (currentNode.value === value) {
+            return counter;
+        } else if (currentNode.value !== value && currentNode.nextNode === null) {
+            return null;
+        } else {
+            counter++;
+            counter = find(value, currentNode.nextNode, counter);
+        }
+        return counter;
+    }
+
     return {
         getList, append, prepend, size, 
-        head, tail, at, pop, contains
+        head, tail, at, pop, contains,
+        find
     };
 }
 const newList = LinkedList();
-for (let i = 0; i < 10; i++) {
-    newList.append(`V${i}`);
-}
-for (let i = 0; i < 20; i++) {
-    console.log(`contains V${i}: `, newList.contains(`V${i}`))
-}
+// for (let i = 0; i < 10; i++) {
+//     newList.append(`V${i}`);
+// }
+// for (let i = 0; i < 20; i++) {
+//     console.log(`find V${i}: `, newList.find(`V${i}`))
+// }

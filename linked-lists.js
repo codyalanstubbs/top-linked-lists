@@ -5,8 +5,8 @@ const Node = (nodeValue = null, nextNodeLink = null) => {
 };
 
 const LinkedList = () => {
-    const head = Node();
-    const list = {head};
+    const nodeHead = Node();
+    const list = {head: nodeHead};
 
     const getList = () => {return list};
 
@@ -37,15 +37,12 @@ const LinkedList = () => {
         return counter;
     }
 
-    return {getList, append, prepend, size};
+    const head = () => {
+        return list.head;
+    }
+
+    return {getList, append, prepend, size, head};
 }
 const newList = LinkedList();
-console.log(newList.size())
-console.log(newList.prepend("Value0"));
-console.log(newList.size())
-console.log(newList.prepend("Value1"));
-console.log(newList.size())
-console.log(newList.prepend("Value2"));
-console.log(newList.size())
-console.log(newList.prepend("Value3"));
-console.log(newList.size())
+console.log(newList.getList())
+console.log(newList.head())

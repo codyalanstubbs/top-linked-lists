@@ -115,10 +115,20 @@ const LinkedList = () => {
         return list;
     }
 
+    const removeAt = (index, currentNode = list.head, counter = 0) => {
+         if (index-1 === counter) {
+            currentNode.nextNode = currentNode.nextNode.nextNode;
+        } else {
+            counter++;
+            removeAt(index, currentNode.nextNode, counter);
+        }
+        return list;
+    }
+
     return {
         getList, append, prepend, size, 
         head, tail, at, pop, contains,
-        find, toString, insertAt
+        find, toString, insertAt, removeAt
     };
 }
 
@@ -126,4 +136,4 @@ const newList = LinkedList();
 // for (let i = 0; i < 10; i++) {
 //     newList.append(`V${i}`);
 // }
-// console.log(`insertAt(5): `, newList.insertAt("insertedValue", 5));
+// console.log(`insertAt(5): `, newList.removeAt(5));

@@ -105,10 +105,20 @@ const LinkedList = () => {
         return finalString;
     }
 
+    const insertAt = (value, index, currentNode = list.head, counter = 0) => {
+        if (index-1 === counter) {
+            currentNode.nextNode = Node(value, currentNode.nextNode);
+        } else {
+            counter++;
+            insertAt(value, index, currentNode.nextNode, counter);
+        }
+        return list;
+    }
+
     return {
         getList, append, prepend, size, 
         head, tail, at, pop, contains,
-        find, toString
+        find, toString, insertAt
     };
 }
 
@@ -116,4 +126,4 @@ const newList = LinkedList();
 // for (let i = 0; i < 10; i++) {
 //     newList.append(`V${i}`);
 // }
-// console.log(`toString: `, newList.toString());
+// console.log(`insertAt(5): `, newList.insertAt("insertedValue", 5));
